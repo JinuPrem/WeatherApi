@@ -23,7 +23,8 @@ class _HomePageState extends State<HomePage> {
 String cityname='';
 //TextEditingController controller =TextEditingController();
 
-void initState(){
+@override
+  void initState(){
   super.initState();
   getCurrentLocation();
 }
@@ -33,7 +34,7 @@ void initState(){
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('images/nature weather image.webp'),
                 fit: BoxFit.cover)),
@@ -44,52 +45,55 @@ void initState(){
             children: [
               Text(
                 cityname,
-                style: TextStyle(fontSize: 35),
+                style: const TextStyle(fontSize: 30,color: Colors.black),
               ),
-              Text(
+              const Text(
                 'Monday',
                 style: TextStyle(fontSize: 20),
               ),
+              const SizedBox(
+                height: 65,
+              ),
+              Center(
+                child: Text(
+                  '${temp?.toStringAsFixed(1)}°C',
+                  style: const TextStyle(fontSize: 60),
+                ),
+              ),
               Padding(
-                padding: const EdgeInsets.only(top: 200.0),
+                padding: const EdgeInsets.only(top: 300.0),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.cloud,
-                      color: Colors.white,
+                      color: Colors.blue,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
-                      'humidity',
-                      style: TextStyle(fontSize: 20),
+                      'Humidity: $humidity%',
+                      style: const TextStyle(fontSize: 20,color: Colors.white),
                     ),
                   ],
                 ),
               ),
               Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.cloud,
-                    color: Colors.white,
+                    color: Colors.blue,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Text(
-                    'Pressure:',
-                    style: TextStyle(fontSize: 20),
+                    'Pressure: $pressure hPa',
+                    style: const TextStyle(fontSize: 20,color: Colors.white),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 50,
-              ),
-              Text(
-                'temperature',
-                style: TextStyle(fontSize: 40),
-              )
+
             ],
           ),
         ),
@@ -148,27 +152,27 @@ void initState(){
     });
   }
 
-  // getCityWeather(String cityname)async{
-  //   var client = http.Client();
-  //   var uri = '${k.domain}q=$cityname&appid=${k.apiKey}';
-  //   var url = Uri.parse(uri);
-  //   var response = await client.get(url);
-  //   if(response.statusCode == 200){
-  //     var data = response.body;
-  //     var decodedData = jsonDecode(data);
-  //     print(data);
-  //     updateUI(decodedData);
-  //
-  //     setState(() {
-  //       isLoaded=true;
-  //     });
-  //   }else{
-  //     print(response.statusCode);
-  //   }
-  // }
-  // void dispose(){
-  //   //TODO: implement dispose
-  //   controller.dispose();
-  //   super.dispose();
-  // }
+//   getCityWeather(String cityname)async{
+//     var client = http.Client();
+//     var uri = '${k.domain}q=$cityname&appid=${k.apiKey}';
+//     var url = Uri.parse(uri);
+//     var response = await client.get(url);
+//     if(response.statusCode == 200){
+//       var data = response.body;
+//       var decodedData = jsonDecode(data);
+//       print(data);
+//       updateUI(decodedData);
+//
+//       setState(() {
+//         isLoaded=true;
+//       });
+//     }else{
+//       print(response.statusCode);
+//     }
+//   }
+//   void dispose(){
+//     //TODO: implement dispose
+//     controller.dispose();
+//     super.dispose();
+//   }
 }
